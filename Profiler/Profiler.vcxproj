@@ -119,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,12 +130,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Profiler.hpp" />
-    <ClInclude Include="TraceGenerator.hpp" />
+    <ClInclude Include="InstrumentationTimer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Profiler.cpp" />
-    <ClCompile Include="TraceGenerator.cpp" />
+    <ClCompile Include="InstrumentationTimer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
