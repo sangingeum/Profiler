@@ -28,7 +28,7 @@ Setting it to 1 enables profiling, while setting it to 0 disables it.
 void function1() {
     PROFILE_FUNCTION();
     for (size_t i = 0; i < 1000; ++i) {
-        
+        PROFILE_SCOPE("function1 loop");
         std::cout << "function1\n";
     }
 }
@@ -36,6 +36,7 @@ void function1() {
 void function2() {
     PROFILE_FUNCTION();
     for (size_t i = 0; i < 1000; ++i) {
+        PROFILE_SCOPE("function2 loop");
         std::cout << "function2\n";
     }
 }
