@@ -1,7 +1,7 @@
 # Profiler
-Visually profile your program in Chrome's tracing page(```chrome://tracing/```).    
+Visually profile your program using Chrome's tracing page(```chrome://tracing/```).    
 As it involves inserting profiling code into your program, it falls under the category of instumentation profiling.   
-This project was inspired by Cherno's [Youtube Video](https://www.youtube.com/watch?v=xlAH4dbMVnU).   
+This project was inspired by a [Youtube Video](https://www.youtube.com/watch?v=xlAH4dbMVnU) by Cherno.   
 
 ## Requirements
     C++20
@@ -12,7 +12,7 @@ This project was inspired by Cherno's [Youtube Video](https://www.youtube.com/wa
 4. Run your program
 5. After execution, ```profile_result.json``` will be generated. Drag and drop this file onto Chrome's tracing page(```chrome://tracing/```)
 
-You can include or exclude profiling code during the compilation step simply by setting the ```PROFILE``` macro to either 1 or 0.
+You can easily include or exclude profiling code during the compilation step simply by setting the ```PROFILE``` macro to either 1 or 0.
 ```
 // Profiler.hpp
 #define PROFILE 1 
