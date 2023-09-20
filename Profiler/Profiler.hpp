@@ -32,27 +32,34 @@ namespace prof {
 			m_outFile.close();
 		}
 		void writeTrace(std::string_view name, long long duration, long long startTime, size_t threadID) {
-			m_outFile <<  "{" + std::format("\"name\":\"{}\",\"dur\":{},\"ph\":\"X\",\"pid\":0,\"tid\":{},\"ts\":{}", name, duration, threadID, startTime) + "},";
+			m_outFile << "{" + std::format("\"name\":\"{}\",\"dur\":{},\"ph\":\"X\",\"pid\":0,\"tid\":{},\"ts\":{}", name, duration, threadID, startTime) + "},";
 		}
 	};
+
 
 	// InstrumentationTimer
 	// RAII style
 	class InstrumentationTimer {
 	private:
-		std::chrono::steady_clock::time_point m_start;
+		long long m_startTime;
 		std::string_view m_name;
 	public:
 		InstrumentationTimer(std::string_view name)
-			: m_start(std::chrono::high_resolution_clock::now()), m_name(name) {}
+			: m_startTime(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()), m_name(name) {
+			// Fix start time
+			static long long lastStartTime = 0;
+			if (lastStartTime == m_startTime)
+				++m_startTime;
+			lastStartTime = m_startTime;
+		}
 		~InstrumentationTimer() {
-			// Get times in microseconds
-			auto startTime = std::chrono::duration_cast<std::chrono::microseconds>(m_start.time_since_epoch()).count();
+			// Get endtime in microseconds
 			auto endTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 			// Get Thread id
 			auto threadID = std::hash<std::thread::id>()(std::this_thread::get_id());
+
 			// Process Trace
-			Profiler::processTrace(m_name, endTime - startTime, startTime, threadID);
+			Profiler::processTrace(m_name, endTime - m_startTime, m_startTime, threadID);
 		}
 	};
 }
@@ -67,4 +74,4 @@ namespace prof {
 #else
 #define PROFILE_SCOPE(name)
 #endif
-#define PROFILE_FUNCTION() PROFILE_SCOPE(__FUNCSIG__)
+#define PROFILE_FUNCTION() PROFILE_SCOPE(__FUNCTION__)
