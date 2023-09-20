@@ -11,6 +11,14 @@ This project was inspired by Cherno's [Youtube Video](https://www.youtube.com/wa
 3. Alternatively, you can use ```PROFILE_SCOPE("Custom Name");``` if you want to use a specific name.
 4. Run your program
 5. After execution, ```profile_result.json``` will be generated. Drag and drop this file onto Chrome's tracing page(```chrome://tracing/```)
+
+You can include or exclude profiling code during the compilation step simply by setting the ```PROFILE``` macro to either 1 or 0.
+```
+// Profiler.hpp
+#define PROFILE 1 
+```
+Setting it to 1 enables profiling, while setting it to 0 disables it.
+
 ### Example
 ```C++
 // main.cpp
