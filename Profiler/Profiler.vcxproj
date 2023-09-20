@@ -130,12 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Profiler.hpp" />
-    <ClInclude Include="InstrumentationTimer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Profiler.cpp" />
-    <ClCompile Include="InstrumentationTimer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "InstrumentationTimer.hpp"
+#include "Profiler.hpp"
 #include <iostream>
 
 void function1() {
